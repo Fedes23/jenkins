@@ -16,6 +16,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.*;
 
 //Suscribete a La Tecnologia Avanza
@@ -93,5 +94,15 @@ public class ProductoControllerTest {
         assertNotNull(resultado);
         assertEquals("Producto eliminado !!1", resultado);
         verify(productoService, times(1)).deleteProducto(1);
+    }
+
+    @Test
+    void buscarProducto_CuandoNoExisteId_DevuelveNull() {
+        when(productoService.getProductoById(anyInt())).thenReturn(null);
+
+        Producto resultado = productoController.buscarProducto(999); // Un ID que no existe
+
+        assertNull(resultado);
+        verify(productoService, times(1)).getProductoById(999);
     }
 }
