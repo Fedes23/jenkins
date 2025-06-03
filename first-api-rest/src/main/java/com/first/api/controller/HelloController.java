@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api")
+//Este es el controller2
 public class HelloController {
 
     //Este es un nuevo comentario
